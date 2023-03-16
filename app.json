@@ -4,11 +4,11 @@
     "slug": "smartfin-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/Icone-SMARTFIN.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/Icone-SMARTFIN.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

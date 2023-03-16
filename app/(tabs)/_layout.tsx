@@ -1,22 +1,17 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import {FontAwesome, Feather, Ionicons, MaterialIcons, FontAwesome5} from '@expo/vector-icons';
 import { Link, Tabs } from 'expo-router';
+import React from 'react';
 import { Pressable, useColorScheme } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
+
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-
+  const showDrawer = ()=> {
+  
+  }
   return (
     <Tabs
       screenOptions={{
@@ -24,18 +19,36 @@ export default function TabLayout() {
       }}>
       <Tabs.Screen
         name="index"
+        
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Maitriser vos finances',
+          
+          tabBarActiveTintColor:Colors[colorScheme ?? 'light'].tabBarActiveTintColor,
+          headerStyle:{borderWidth:0},
+          tabBarIcon: ({ color,focused }) => focused?<Ionicons name="ios-layers" size={24} color={color} />:<Ionicons name="ios-layers-outline" size={24} color={color} />,
+          
+          tabBarLabel:"Accueil",
+          headerLeft: ()=> (
+            <Pressable  onPress={showDrawer}>
+              {({ pressed }) => (
+                  <FontAwesome
+                    name="bars"
+                    size={25}
+                    color={Colors[colorScheme ?? 'light'].text}
+                    style={{ marginLeft: 17, opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+            </Pressable>
+          ),
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
                 {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
+                  <Ionicons
+                    name="notifications-outline"
                     size={25}
                     color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                    style={{ marginRight: 17, opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
               </Pressable>
@@ -44,10 +57,32 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="tantie_annie"
+        
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarLabel:'Tantie Annie',
+          headerShown:false,
+          tabBarActiveTintColor:Colors[colorScheme ?? 'light'].tabBarActiveTintColor,
+          tabBarIcon: ({ color,focused }) =>focused?<Ionicons name="cart" size={24} color={color} />:<Ionicons name="cart-outline" size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="documents"
+        
+        options={{
+          tabBarLabel:'Documents',
+          headerShown:false,
+          tabBarActiveTintColor:Colors[colorScheme ?? 'light'].tabBarActiveTintColor,
+          tabBarIcon: ({ color,focused }) => focused?<Ionicons name="document-text" size={24} color={color}/>:<Ionicons name="document-text-outline" size={24} color={color}/>,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          tabBarLabel:'Profile',
+          headerShown:false,
+          tabBarActiveTintColor:Colors[colorScheme ?? 'light'].tabBarActiveTintColor,
+          tabBarIcon: ({ color,focused }) => focused?<Ionicons name="ios-person" size={22} color={color} />: <Ionicons name="ios-person-outline" size={24} color={color} />,
         }}
       />
     </Tabs>
