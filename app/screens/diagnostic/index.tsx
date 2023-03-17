@@ -4,6 +4,8 @@ import {
   StyleSheet,
   useColorScheme,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  
 } from "react-native";
 import Colors from "../../../constants/Colors";
 import { useState } from "react";
@@ -13,6 +15,7 @@ import SortieArgent from "./sortie_argent";
 import Dettes from "./dettes";
 import Resultat from "./resultat";
 import * as Crypto from "expo-crypto";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function Diagnosticscreen() {
   const colorScheme = useColorScheme();
@@ -46,7 +49,7 @@ export default function Diagnosticscreen() {
   ];
   return (
     <>
-      <View
+      <KeyboardAwareScrollView
         style={{
           ...styles.container,
           backgroundColor: Colors[colorScheme ?? "light"].backgroundHome,
@@ -98,7 +101,7 @@ export default function Diagnosticscreen() {
               }}
             />
             <View
-              key={Crypto.getRandomBytes(20)[0]}
+              key={Crypto.getRandomBytes(30)[0]}
               style={{
                 paddingTop: 4,
                 paddingBottom: 4,
@@ -110,7 +113,7 @@ export default function Diagnosticscreen() {
               }}
             />
             <View
-              key={Crypto.getRandomBytes(20)[0]}
+              key={Crypto.getRandomBytes(40)[0]}
               style={{
                 paddingTop: 4,
                 paddingBottom: 4,
@@ -122,7 +125,7 @@ export default function Diagnosticscreen() {
               }}
             />
             <View
-              key={Crypto.getRandomBytes(20)[0]}
+              key={Crypto.getRandomBytes(50)[0]}
               style={{
                 paddingTop: 4,
                 paddingBottom: 4,
@@ -134,7 +137,7 @@ export default function Diagnosticscreen() {
               }}
             />
             <View
-              key={Crypto.getRandomBytes(20)[0]}
+              key={Crypto.getRandomBytes(60)[0]}
               style={{
                 paddingTop: 4,
                 paddingBottom: 4,
@@ -147,14 +150,18 @@ export default function Diagnosticscreen() {
             />
           </View>
         </View>
-        <ScrollView>
-          {steps.map(
-            (st) =>
-              st.id === currentStep && (
-                <View key={Crypto.getRandomBytes(20)[0]}>{st.content}</View>
-              )
-          )}
-        </ScrollView>
+        
+          <ScrollView>
+            <KeyboardAvoidingView>
+              {steps.map(
+                (st) =>
+                  st.id === currentStep && (
+                    <View key={Crypto.getRandomBytes(20)[0]}>{st.content}</View>
+                  )
+              )}
+            </KeyboardAvoidingView>
+
+          </ScrollView>
         <View
           style={{
             width: "100%",
@@ -208,7 +215,7 @@ export default function Diagnosticscreen() {
             </TouchableOpacity>
           )}
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     </>
   );
 }
@@ -223,7 +230,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#0C1179",
-    padding: 10,
+    padding: 20,
     borderRadius: 10,
     justifyContent: "center",
     alignSelf: "flex-end",

@@ -35,19 +35,21 @@ export default function SituationFamilial() {
             <TouchableOpacity
               style={{
                 ...styles.switcher,
+                paddingLeft:50,
+                paddingRight:50,
                 backgroundColor: type === 1 ? "green" : "white",
               }}
               onPress={() => setType(1)}
             >
               <Ionicons
                 name="person-outline"
-                size={60}
+                size={50}
                 color={type === 1 ? "white" : "black"}
               />
               <Text
                 style={{
                   color: type === 1 ? "white" : "black",
-                  fontSize: 20,
+                  fontSize: 17,
                   fontWeight: "bold",
                 }}
               >
@@ -63,17 +65,17 @@ export default function SituationFamilial() {
             >
               <Ionicons
                 name="people-outline"
-                size={70}
+                size={50}
                 color={type === 2 ? "white" : "black"}
               />
               <Text
                 style={{
                   color: type === 2 ? "white" : "black",
-                  fontSize: 20,
+                  fontSize: 17,
                   fontWeight: "bold",
                 }}
               >
-                Pour moi
+                Pour mon couple
               </Text>
             </TouchableOpacity>
           </View>
@@ -158,8 +160,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
-    paddingLeft: 50,
-    paddingRight: 50,
+    paddingLeft: 25,
+    paddingRight: 25,
     borderRadius: 15,
   },
   button: {
